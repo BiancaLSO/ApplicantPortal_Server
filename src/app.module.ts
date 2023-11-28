@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactFormModule } from './contact-form/contact-form.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ContactFormModule } from './contact-form/contact-form.module';
       inject: [ConfigService],
     }),
     ContactFormModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
