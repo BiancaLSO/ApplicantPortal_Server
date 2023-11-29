@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { ContactFormModule } from './contact-form/contact-form.module';
 import { AddressModule } from './address/address.module';
 import { ApplicationRequirementsModule } from './application-requirements/application-requirements.module';
+import { ApplicationModule } from './application/application.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ApplicationRequirementsModule } from './application-requirements/applic
     ContactFormModule,
     AddressModule,
     ApplicationRequirementsModule,
+    ApplicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
