@@ -1,5 +1,3 @@
-// application.dto.ts
-
 export class ApplicationDto {
   grant_id: number;
   activity_id: number;

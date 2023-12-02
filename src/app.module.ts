@@ -8,6 +8,7 @@ import { ContactFormModule } from './contact-form/contact-form.module';
 import { AddressModule } from './address/address.module';
 import { ApplicationRequirementsModule } from './application-requirements/application-requirements.module';
 import { ApplicationModule } from './application/application.module';
+import { ApplicationFormModule } from './application-form/application-form.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ApplicationModule } from './application/application.module';
     AddressModule,
     ApplicationRequirementsModule,
     ApplicationModule,
+    ApplicationFormModule,
   ],
   controllers: [AppController],
   providers: [AppService],
