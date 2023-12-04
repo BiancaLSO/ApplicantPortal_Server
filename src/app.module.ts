@@ -3,6 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { StatusModule } from './status/status.module';
+import { ActivityModule } from './activity/activity.module';
+import { PdfUploadModule } from './pdf_upload/pdf_upload.module';
+import { CategoryModule } from './category/category.module';
+import { GrantModule } from './grant/grant.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -21,6 +27,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
+    StatusModule,
+    ActivityModule,
+    PdfUploadModule,
+    CategoryModule,
+    GrantModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
