@@ -1,16 +1,14 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsEmail } from 'class-validator';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsNotEmpty()
   @Column()
   firstName: string;
 
-  @IsNotEmpty()
   @Column()
   lastName: string;
 
@@ -20,19 +18,16 @@ export class User {
   @Column()
   cpr: string;
 
-  @IsNotEmpty()
   @IsEmail()
   @Column()
   email: string;
 
-  @IsNotEmpty()
   @Column()
   addresId: number;
 
   @Column()
   isNotified: boolean;
 
-  @IsNotEmpty()
   @Column()
   notificationId: number;
 }

@@ -4,20 +4,51 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserCredentials } from './entities/user.credentials.entity';
+import { encodePassword } from 'src/auth/utils.bcrypt';
+import { CreateUserCredentialsDTO } from './dto/create-user-credentials.dto';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(UserCredentials)
+    private userCredentialsRepository: Repository<UserCredentials>,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    createUserDto.addresId = 1; // Change these after getting the address and notification entities and dtos
-    createUserDto.notificationId = 1;
+  async createUserandCredentials(
+    createUserCredentialsDto: CreateUserCredentialsDTO,
+  ) {
+    const existingUser = await this.userCredentialsRepository.findOneBy({
+      username: createUserCredentialsDto.username,
+    });
+    if (existingUser) {
+      throw new Error('Username already exists');
+    } else {
+      const user = new User();
+      user.addresId = 1; // Change these after getting the address and notification entities and dtos
+      user.notificationId = 1;
+      user.isNotified = false;
 
-    const newUser = this.userRepository.create(createUserDto);
-    return this.userRepository.save(newUser);
+      const savedUser = await this.userRepository.save(user);
+
+      const userCredentials = new UserCredentials();
+      userCredentials.username = createUserCredentialsDto.username;
+      userCredentials.password = await encodePassword(
+        createUserCredentialsDto?.password,
+      );
+      userCredentials.user = savedUser;
+
+      return await this.userCredentialsRepository.save(userCredentials);
+    }
+  }
+
+  async findByUsername(username: string) {
+    return this.userCredentialsRepository
+      .createQueryBuilder('userCredentials')
+      .where('userCredentials.username = :username', { username })
+      .getOne();
   }
 
   async findAll() {

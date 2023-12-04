@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 import { User } from './user.entity';
 
@@ -15,6 +21,7 @@ export class UserCredentials {
   @Column()
   password: string;
 
-  @OneToOne((type) => User, (user) => user.id)
-  userId: User | null;
+  @OneToOne((type) => User, (user) => user.id, { cascade: true })
+  @JoinColumn()
+  user: User;
 }
