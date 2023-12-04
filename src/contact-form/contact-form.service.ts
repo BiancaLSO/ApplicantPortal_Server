@@ -1,4 +1,4 @@
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { ContactForm } from './contact-form.entity';
 import { ContactFormDto } from './contact-form.dto';
 
-@Injectable({ scope: Scope.DEFAULT })
+@Injectable()
 export class ContactFormService {
   constructor(
     @InjectRepository(ContactForm)
