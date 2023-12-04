@@ -21,9 +21,19 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('/credentials')
+  findAllUserCredentials() {
+    return this.userService.findAllUserCredentials();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);
+  }
+
+  @Get('/credentials/:id')
+  findOneUserCredentials(@Param('id') id: string) {
+    return this.userService.findOneUserCredential(+id);
   }
 
   @Patch(':id')

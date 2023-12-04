@@ -55,8 +55,19 @@ export class UserService {
     return this.userRepository.find();
   }
 
+  async findAllUserCredentials() {
+    return this.userCredentialsRepository.find();
+  }
+
   async findOne(id: number) {
     return this.userRepository.findOneBy({ id });
+  }
+
+  async findOneUserCredential(id: number) {
+    return this.userCredentialsRepository.findOne({
+      where: { id: id },
+      relations: ['user'],
+    });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
