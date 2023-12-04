@@ -7,20 +7,20 @@ export class User {
   id: number;
 
   @Column()
-  firstName: string;
+  firstName: string | null;
 
   @Column()
-  lastName: string;
+  lastName: string | null;
 
   @Column()
-  phone: string;
+  phone: string | null;
 
   @Column()
-  cpr: string;
+  cpr: string | null;
 
   @IsEmail()
   @Column()
-  email: string;
+  email: string | null;
 
   @Column()
   addresId: number;
