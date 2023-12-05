@@ -9,6 +9,8 @@ import { AddressModule } from './address/address.module';
 import { ApplicationRequirementsModule } from './application-requirements/application-requirements.module';
 import { ApplicationModule } from './application/application.module';
 import { ApplicationFormModule } from './application-form/application-form.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { ApplicationFormModule } from './application-form/application-form.modul
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: true, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
+        synchronize: false, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
       }),
       inject: [ConfigService],
     }),
@@ -32,6 +34,8 @@ import { ApplicationFormModule } from './application-form/application-form.modul
     ApplicationRequirementsModule,
     ApplicationModule,
     ApplicationFormModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
