@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactFormModule } from './contact-form/contact-form.module';
@@ -11,6 +10,12 @@ import { ApplicationModule } from './application/application.module';
 import { ApplicationFormModule } from './application-form/application-form.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { StatusModule } from './status/status.module';
+import { ActivityModule } from './activity/activity.module';
+import { PdfUploadModule } from './pdf_upload/pdf_upload.module';
+import { CategoryModule } from './category/category.module';
+import { GrantModule } from './grant/grant.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -36,6 +41,12 @@ import { AuthModule } from './auth/auth.module';
     ApplicationFormModule,
     UserModule,
     AuthModule,
+    StatusModule,
+    ActivityModule,
+    PdfUploadModule,
+    CategoryModule,
+    GrantModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
