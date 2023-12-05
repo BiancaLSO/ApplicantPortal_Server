@@ -5,7 +5,9 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { Category } from './category.entity';
+import { Category } from '../../entities/category.entity';
+import { Activity } from 'src/activity/entites/activity.entity';
+import { Application } from 'src/application/entities/application.entity';
 
 @Entity()
 export class Grant {
@@ -26,4 +28,7 @@ export class Grant {
 
   @ManyToOne(() => Category, (category) => category.grants)
   category: Category;
+
+  @OneToMany(() => Application, (application) => application.grant)
+  applications: Application[];
 }

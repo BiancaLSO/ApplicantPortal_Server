@@ -221,7 +221,7 @@ import {
   Connection,
   Repository,
 } from 'typeorm';
-import { Grant } from '../entities/grant.entity';
+import { Grant } from './entities/grant.entity';
 import { Category } from '../entities/category.entity';
 import { GrantController } from './grant.controller';
 import { GrantService } from './grant.service';

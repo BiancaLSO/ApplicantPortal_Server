@@ -1,33 +1,46 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { IsEmail } from 'class-validator';
+import { Address } from 'src/address/entities/address.entity';
+import { Application } from 'src/application/entities/application.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   firstName: string | null;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string | null;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string | null;
 
-  @Column()
+  @Column({ nullable: true })
   cpr: string | null;
 
   @IsEmail()
-  @Column()
+  @Column({ nullable: true })
   email: string | null;
-
-  @Column()
-  addresId: number;
 
   @Column()
   isNotified: boolean;
 
   @Column()
   notificationId: number;
+
+  @ManyToOne(() => Address, (address) => address.users, { eager: true })
+  @JoinColumn({ name: 'address_id' })
+  address: Address;
+
+  @OneToMany(() => Application, (application) => application.user)
+  applications: Application[];
 }

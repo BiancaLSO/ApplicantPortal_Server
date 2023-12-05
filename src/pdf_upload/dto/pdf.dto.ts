@@ -1,4 +1,4 @@
-import { Activity } from '../../entities/activity.entity';
+import { Activity } from '../../activity/entites/activity.entity';
 
 export class PdfDto {
   activity: Activity;

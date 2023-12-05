@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { ApplicationForm } from './application-form.entity';
-import { ApplicationFormDto } from './application-form.dto';
+import { ApplicationForm } from './entities/application-form.entity';
+import { ApplicationFormDto } from './dto/application-form.dto';
 
 @Injectable()
 export class ApplicationFormService {

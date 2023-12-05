@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
-import { Activity } from './activity.entity';
+import { Activity } from '../activity/entites/activity.entity';
 
 @Entity()
 export class PDF {

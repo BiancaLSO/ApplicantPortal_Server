@@ -30,7 +30,7 @@ import { NotificationModule } from './notification/notification.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: false, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
+        synchronize: true, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
       }),
       inject: [ConfigService],
     }),

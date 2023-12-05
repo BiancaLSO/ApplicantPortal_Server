@@ -2,16 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ActivityDto } from './dto/activity.dto';
-import { Activity } from '../entities/activity.entity';
+import { Activity } from './entites/activity.entity';
+import { Status } from 'src/entities/status.entity';
 
 @Injectable()
 export class ActivityService {
   constructor(
     @InjectRepository(Activity)
     private activityRepository: Repository<Activity>,
+    @InjectRepository(Status)
+    private statusRepository: Repository<Status>,
   ) {}
 
-  create_activity(activityDto: ActivityDto) {
+  async create_activity(body) {
+    const status = await this.statusRepository.findOne({
+      where: { id: body.statusId },
+    });
+
+    const activityDto = new ActivityDto(body.name, body.date, body.note);
+    activityDto.status = status;
     return this.activityRepository.save(activityDto);
   }
   findAll() {

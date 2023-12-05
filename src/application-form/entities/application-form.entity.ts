@@ -3,10 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Application } from '../application/application.entity';
+import { Application } from '../../application/entities/application.entity';
 
 @Entity({ name: 'application_form' })
 export class ApplicationForm {
@@ -85,16 +86,18 @@ export class ApplicationForm {
   @Column({ type: 'varchar', length: 45, nullable: true })
   municipality: string;
 
-  @Column({ type: 'int' })
-  application_id: number;
-
   @Column({ type: 'date', nullable: true })
   recedency_end_date: Date;
 
   @Column({ type: 'boolean', nullable: true })
   agreement_info: boolean;
 
-  @ManyToOne(() => Application, { eager: true })
-  @JoinColumn({ name: 'application_id' })
+  @Column({ type: 'int' })
+  application_id: number;
+
+  @OneToOne(() => Application, (application) => application.id, {
+    cascade: true,
+  })
+  @JoinColumn()
   application: Application;
 }

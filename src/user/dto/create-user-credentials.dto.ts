@@ -10,11 +10,8 @@ export class CreateUserCredentialsDTO {
   @MinLength(8)
   password: string;
 
-  userId: number;
-
-  constructor(username: string, password: string, userId: number) {
+  constructor(username: string, password: string) {
     this.username = username;
     this.password = password;
-    this.userId = userId;
   }
 }

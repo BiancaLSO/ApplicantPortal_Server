@@ -21,11 +21,7 @@ export class ActivityController {
 
   @Post()
   async create(@Req() req, @Body() body) {
-    const activityDto = new ActivityDto(body.name, body.date, body.note);
-
-    activityDto.status = await this.statusService.findOne(1);
-
-    return this.activityService.create_activity(activityDto);
+    return this.activityService.create_activity(body);
   }
 
   @Get()

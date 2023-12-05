@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { UserCredentials } from './entities/user.credentials.entity';
 import { encodePassword } from './../auth/utils.bcrypt';
 import { CreateUserCredentialsDTO } from './dto/create-user-credentials.dto';
+import { Address } from 'src/address/entities/address.entity';
 
 @Injectable()
 export class UserService {
@@ -14,6 +15,8 @@ export class UserService {
     private userRepository: Repository<User>,
     @InjectRepository(UserCredentials)
     private userCredentialsRepository: Repository<UserCredentials>,
+    @InjectRepository(Address)
+    private addressRepository: Repository<Address>,
   ) {}
 
   async createUserandCredentials(
@@ -26,11 +29,32 @@ export class UserService {
       throw new Error('Username already exists');
     } else {
       const user = new User();
-      user.addresId = 1; // Change these after getting the address and notification entities and dtos
+
+      const existingAddress = await this.addressRepository.findOne({
+        where: {
+          zipCode: 2300,
+          city: 'Kobenhavn S',
+          street: 'Richard Mortensens Vej',
+        },
+      });
+
+      if (!existingAddress) {
+        const newAddress = await this.addressRepository.save({
+          zipCode: 2300,
+          city: 'Kobenhavn S',
+          street: 'Richard Mortensens Vej',
+        });
+
+        user.address = newAddress;
+      } else {
+        user.address = existingAddress;
+      }
+
       user.notificationId = 1;
       user.isNotified = false;
 
       const savedUser = await this.userRepository.save(user);
+      console.log('saved user', savedUser);
 
       const userCredentials = new UserCredentials();
       userCredentials.username = createUserCredentialsDto.username;

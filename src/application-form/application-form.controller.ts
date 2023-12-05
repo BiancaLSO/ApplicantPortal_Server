@@ -8,20 +8,26 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { ApplicationFormDto } from './application-form.dto';
-import { ApplicationForm } from './application-form.entity';
+import { ApplicationFormDto } from './dto/application-form.dto';
+import { ApplicationForm } from './entities/application-form.entity';
 import { ApplicationFormService } from './application-form.service';
+import { ApplicationService } from 'src/application/application.service';
 
 @Controller('application-form')
 export class ApplicationFormController {
   constructor(
     private readonly applicationFormService: ApplicationFormService,
+    private readonly applicationService: ApplicationService,
   ) {}
 
   @Post()
-  create(
-    @Body() applicationFormDto: ApplicationFormDto,
-  ): Promise<ApplicationForm> {
+  async create(@Body() body): Promise<ApplicationForm> {
+    const applicationFormDto = new ApplicationFormDto();
+    const application = await this.applicationService.findById(
+      body.applicationId,
+    );
+
+    applicationFormDto.application = application;
     return this.applicationFormService.create(applicationFormDto);
   }
 

@@ -1,4 +1,7 @@
+import { Application } from 'src/application/entities/application.entity';
+
 export class ApplicationFormDto {
+  application: Application;
   project_title: string;
   experience_description: string;
   benefit_description: string;
@@ -23,7 +26,6 @@ export class ApplicationFormDto {
   is_catalog_used: boolean;
   event_date: Date;
   municipality: string;
-  application_id: number;
   recedency_end_date: Date;
   agreement_info: boolean;
 }

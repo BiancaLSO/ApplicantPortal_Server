@@ -8,9 +8,9 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { Address } from './address.entity';
+import { Address } from './entities/address.entity';
 import { AddressService } from './address.service';
-import { AddressDto } from './address.dto';
+import { AddressDto } from './dto/address.dto';
 
 @Controller('address')
 export class AddressController {
