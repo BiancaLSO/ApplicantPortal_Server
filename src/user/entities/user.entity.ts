@@ -7,8 +7,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IsEmail } from 'class-validator';
-import { Address } from 'src/address/entities/address.entity';
-import { Application } from 'src/application/entities/application.entity';
+import { Address } from '../../address/entities/address.entity';
+import { Application } from '../../application/entities/application.entity';
+import { ContactForm } from '../../contact-form/entities/contact-form.entity';
+import { Notification } from '../../notification/entites/notification.entity';
 
 @Entity()
 export class User {
@@ -43,4 +45,10 @@ export class User {
 
   @OneToMany(() => Application, (application) => application.user)
   applications: Application[];
+
+  @OneToMany(() => ContactForm, (inquiry) => inquiry.user)
+  inquiries: ContactForm[];
+
+  @OneToMany(() => Notification, (notification) => notification.user)
+  notifications: Notification[];
 }

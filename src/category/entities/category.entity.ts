@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Grant } from '../grant/entities/grant.entity';
+import { Grant } from '../../grant/entities/grant.entity';
 
 @Entity()
 export class Category {

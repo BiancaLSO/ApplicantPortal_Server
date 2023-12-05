@@ -6,8 +6,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Status } from '../../entities/status.entity';
-import { PDF } from '../../entities/pdf_upload.entity';
+import { Status } from '../../status/entities/status.entity';
+import { PDF } from '../../pdf_upload/entities/pdf_upload.entity';
 import { Application } from 'src/application/entities/application.entity';
 
 @Entity()

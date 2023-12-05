@@ -1,3 +1,4 @@
+import { User } from 'src/user/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -15,7 +16,7 @@ export class ContactForm {
   @Column({ type: 'varchar', length: 255 })
   description: string;
 
-  //   @ManyToOne(() => User, { eager: true }) // here
-  //   @JoinColumn({ name: 'user_id' })
-  //   user: User;
+  @ManyToOne(() => User, (user) => user.inquiries, { eager: true })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }

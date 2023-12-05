@@ -12,7 +12,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Grant } from 'src/grant/entities/grant.entity';
 import { UserCredentials } from 'src/user/entities/user.credentials.entity';
 import { Address } from 'src/address/entities/address.entity';
-import { Status } from 'src/entities/status.entity';
+import { Status } from 'src/status/entities/status.entity';
 
 // import { ActivityModule } from '../activity/activity.module';
 // import { GrantModule } from '../grant/grant.module';

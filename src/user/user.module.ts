@@ -5,10 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { UserCredentials } from './entities/user.credentials.entity';
 import { Address } from '../address/entities/address.entity';
-import { Notification } from '../entities/notification.entity';
+import { Notification } from '../notification/entites/notification.entity';
+import { ContactForm } from 'src/contact-form/entities/contact-form.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, UserCredentials, Address])],
+  imports: [
+    TypeOrmModule.forFeature([User, UserCredentials, Address, ContactForm]),
+  ],
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],

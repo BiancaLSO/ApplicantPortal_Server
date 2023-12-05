@@ -8,8 +8,8 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { ApplicationRequirementsDto } from './application-requirements.dto';
-import { ApplicationRequirements } from './application-requirements.entity';
+import { ApplicationRequirementsDto } from './dto/application-requirements.dto';
+import { ApplicationRequirements } from './entities/application-requirements.entity';
 import { ApplicationRequirementsService } from './application-requirements.service';
 
 @Controller('application-requirements')

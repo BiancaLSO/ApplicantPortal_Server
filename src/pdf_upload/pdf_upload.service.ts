@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PDF } from '../entities/pdf_upload.entity';
+import { PDF } from './entities/pdf_upload.entity';
 import { PdfDto } from './dto/pdf.dto';
 
 @Injectable()

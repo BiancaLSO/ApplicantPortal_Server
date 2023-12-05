@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { ContactForm } from './contact-form.entity';
-import { ContactFormDto } from './contact-form.dto';
+import { ContactForm } from './entities/contact-form.entity';
+import { ContactFormDto } from './dto/contact-form.dto';
 
 @Injectable()
 export class ContactFormService {

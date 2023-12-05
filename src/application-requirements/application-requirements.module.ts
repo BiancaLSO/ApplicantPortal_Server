@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ApplicationRequirements } from './application-requirements.entity';
+import { ApplicationRequirements } from './entities/application-requirements.entity';
 import { ApplicationRequirementsService } from './application-requirements.service';
 import { ApplicationRequirementsController } from './application-requirements.controller';
 

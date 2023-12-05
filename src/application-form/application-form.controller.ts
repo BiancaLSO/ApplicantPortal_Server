@@ -22,11 +22,11 @@ export class ApplicationFormController {
 
   @Post()
   async create(@Body() body): Promise<ApplicationForm> {
-    const applicationFormDto = new ApplicationFormDto();
+    console.log(body.applicationId);
     const application = await this.applicationService.findById(
       body.applicationId,
     );
-
+    const applicationFormDto = new ApplicationFormDto();
     applicationFormDto.application = application;
     return this.applicationFormService.create(applicationFormDto);
   }

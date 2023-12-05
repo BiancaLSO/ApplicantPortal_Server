@@ -25,7 +25,7 @@ export class ApplicationService {
   async findById(id: number): Promise<Application> {
     return await this.applicationRepository.findOne({
       where: { id },
-      relations: ['activity', 'grant', 'user'],
+      relations: ['activities', 'grant', 'user'],
     });
   }
 

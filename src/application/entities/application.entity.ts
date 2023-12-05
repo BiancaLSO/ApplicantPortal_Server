@@ -1,4 +1,5 @@
 import { Activity } from 'src/activity/entites/activity.entity';
+import { ApplicationRequirements } from 'src/application-requirements/entities/application-requirements.entity';
 import { Grant } from 'src/grant/entities/grant.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
@@ -7,6 +8,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -29,4 +31,14 @@ export class Application {
   @ManyToOne(() => User, (user) => user.applications, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToOne(
+    () => ApplicationRequirements,
+    (ApplicationRequirements) => ApplicationRequirements.id,
+    {
+      cascade: true,
+    },
+  )
+  @JoinColumn()
+  application_req: ApplicationRequirements;
 }

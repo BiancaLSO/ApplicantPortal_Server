@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { ApplicationRequirements } from './application-requirements.entity';
-import { ApplicationRequirementsDto } from './application-requirements.dto';
+import { ApplicationRequirements } from './entities/application-requirements.entity';
+import { ApplicationRequirementsDto } from './dto/application-requirements.dto';
 
 @Injectable()
 export class ApplicationRequirementsService {

@@ -1,4 +1,4 @@
-import { Status } from '../../entities/status.entity';
+import { Status } from '../../status/entities/status.entity';
 
 export class ActivityDto {
   status: Status;

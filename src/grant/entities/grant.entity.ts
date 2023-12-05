@@ -5,7 +5,7 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { Category } from '../../entities/category.entity';
+import { Category } from '../../category/entities/category.entity';
 import { Activity } from 'src/activity/entites/activity.entity';
 import { Application } from 'src/application/entities/application.entity';
 

@@ -8,16 +8,24 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { ContactForm } from './contact-form.entity';
+import { ContactForm } from './entities/contact-form.entity';
 import { ContactFormService } from './contact-form.service';
-import { ContactFormDto } from './contact-form.dto';
+import { ContactFormDto } from './dto/contact-form.dto';
+import { UserService } from 'src/user/user.service';
 
 @Controller('contact-form')
 export class ContactFormController {
-  constructor(private readonly contactFormService: ContactFormService) {}
+  constructor(
+    private readonly contactFormService: ContactFormService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post()
-  create(@Body() contactFormDto: ContactFormDto): Promise<ContactForm> {
+  async create(@Body() body): Promise<ContactForm> {
+    const user = await this.userService.findOne(body.userId);
+    const contactFormDto = new ContactFormDto();
+    contactFormDto.description = body.description;
+    contactFormDto.user = user;
     return this.contactFormService.create(contactFormDto);
   }
 
