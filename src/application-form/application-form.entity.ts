@@ -93,8 +93,4 @@ export class ApplicationForm {
 
   @Column({ type: 'boolean', nullable: true })
   agreement_info: boolean;
-
-  @ManyToOne(() => Application, { eager: true })
-  @JoinColumn({ name: 'application_id' })
-  application: Application;
 }

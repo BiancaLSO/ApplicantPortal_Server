@@ -42,4 +42,74 @@ export class ApplicationFormService {
   async remove(id: number): Promise<void> {
     await this.applicationFormRepository.delete(id);
   }
+
+  async callStoredProcedure(
+    grantId: number,
+    applicationFormDto: ApplicationFormDto,
+  ): Promise<void> {
+    const {
+      project_title,
+      experience_description,
+      benefit_description,
+      future_vision_description,
+      traveler_name_and_position,
+      purpose_description,
+      departure_country,
+      departure_city,
+      destination_country,
+      destination_city,
+      trip_start_date,
+      trip_end_date,
+      requested_amount,
+      overall_amount,
+      recedency_name,
+      project_description,
+      project_country,
+      recedency_start_date,
+      author_full_name,
+      event_location,
+      target_group,
+      is_catalog_used,
+      event_date,
+      municipality,
+      application_id,
+      recedency_end_date,
+      agreement_info,
+    } = applicationFormDto;
+
+    // Use these parameters when executing the stored procedure
+    await this.applicationFormRepository.query(
+      'CALL insertapplicationform($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28)',
+      [
+        application_id,
+        grantId,
+        requested_amount,
+        overall_amount,
+        project_title,
+        experience_description,
+        benefit_description,
+        future_vision_description,
+        agreement_info,
+        traveler_name_and_position,
+        purpose_description,
+        departure_country,
+        departure_city,
+        destination_country,
+        destination_city,
+        trip_start_date,
+        trip_end_date,
+        recedency_name,
+        project_description,
+        project_country,
+        recedency_start_date,
+        recedency_end_date,
+        author_full_name,
+        event_location,
+        target_group,
+        is_catalog_used,
+        event_date,
+        municipality,
+      ],
+    );
+  }
 }

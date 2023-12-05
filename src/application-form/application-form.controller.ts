@@ -25,6 +25,17 @@ export class ApplicationFormController {
     return this.applicationFormService.create(applicationFormDto);
   }
 
+  @Post('/call-stored-procedure/:grantId')
+  callStoredProcedure(
+    @Param('grantId') grantId: number,
+    @Body() applicationFormDto: ApplicationFormDto,
+  ): Promise<void> {
+    return this.applicationFormService.callStoredProcedure(
+      grantId,
+      applicationFormDto,
+    );
+  }
+
   @Get()
   findAll(): Promise<ApplicationForm[]> {
     return this.applicationFormService.findAll();
