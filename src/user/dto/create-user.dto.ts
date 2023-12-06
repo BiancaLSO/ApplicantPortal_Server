@@ -26,8 +26,6 @@ export class CreateUserDto {
   @IsBoolean()
   isNotified: boolean;
 
-  notificationId: number;
-
   constructor(
     firstName: string,
     lastName: string,
@@ -45,6 +43,5 @@ export class CreateUserDto {
     this.cpr = cpr;
     this.isNotified = isNotified;
     this.addresId = addresId;
-    this.notificationId = notificationId;
   }
 }

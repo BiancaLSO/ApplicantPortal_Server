@@ -10,14 +10,28 @@ import {
   Patch,
 } from '@nestjs/common';
 import { NotificationService } from './notification.service';
+import { User } from 'src/user/entities/user.entity';
+import { UserService } from 'src/user/user.service';
+import { NotificationDto } from './dto/notification.dto';
 
 @Controller('notification')
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(
+    private readonly notificationService: NotificationService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post()
   async create_notification(@Req() req, @Body() body) {
-    return this.notificationService.create_notification(body);
+    const user = await this.userService.findOne(body.userId);
+    const newBody = {
+      user: user,
+      title: body.title,
+      description: body.description,
+      sent_date: new Date(),
+      isRead: false,
+    };
+    return this.notificationService.create_notification(newBody);
   }
 
   @Get()

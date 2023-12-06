@@ -16,7 +16,7 @@ export class ContactForm {
   @Column({ type: 'varchar', length: 255 })
   description: string;
 
-  @ManyToOne(() => User, (user) => user.inquiries, { eager: true })
+  @ManyToOne(() => User, (user) => user.inquiries)
   @JoinColumn({ name: 'user_id' })
   user: User;
 }

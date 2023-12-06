@@ -36,9 +36,6 @@ export class User {
   @Column()
   isNotified: boolean;
 
-  @Column()
-  notificationId: number;
-
   @ManyToOne(() => Address, (address) => address.users, { eager: true })
   @JoinColumn({ name: 'address_id' })
   address: Address;

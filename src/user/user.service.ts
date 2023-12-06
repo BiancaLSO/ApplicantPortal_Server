@@ -50,7 +50,6 @@ export class UserService {
         user.address = existingAddress;
       }
 
-      user.notificationId = 1;
       user.isNotified = false;
 
       const savedUser = await this.userRepository.save(user);
@@ -75,7 +74,9 @@ export class UserService {
   }
 
   async findAll() {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      relations: ['notifications', 'inquiries', 'applications', 'address'],
+    });
   }
 
   async findAllUserCredentials() {

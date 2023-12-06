@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactFormModule } from './contact-form/contact-form.module';
 import { AddressModule } from './address/address.module';
-import { ApplicationRequirementsModule } from './application-requirements/application-requirements.module';
 import { ApplicationModule } from './application/application.module';
 import { ApplicationFormModule } from './application-form/application-form.module';
 import { UserModule } from './user/user.module';
@@ -36,7 +35,6 @@ import { NotificationModule } from './notification/notification.module';
     }),
     ContactFormModule,
     AddressModule,
-    ApplicationRequirementsModule,
     ApplicationModule,
     ApplicationFormModule,
     UserModule,
