@@ -6,7 +6,7 @@ import { User } from './entities/user.entity';
 import { UserCredentials } from './entities/user.credentials.entity';
 import { Address } from '../address/entities/address.entity';
 import { Notification } from '../notification/entites/notification.entity';
-import { ContactForm } from 'src/contact-form/entities/contact-form.entity';
+import { ContactForm } from '../contact-form/entities/contact-form.entity';
 
 @Module({
   imports: [

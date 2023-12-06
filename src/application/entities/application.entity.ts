@@ -1,7 +1,7 @@
-import { Activity } from 'src/activity/entites/activity.entity';
-import { ApplicationRequirements } from 'src/application-requirements/entities/application-requirements.entity';
-import { Grant } from 'src/grant/entities/grant.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Activity } from '../../activity/entites/activity.entity';
+import { ApplicationRequirements } from '../../application-requirements/entities/application-requirements.entity';
+import { Grant } from '../../grant/entities/grant.entity';
+import { User } from '../../user/entities/user.entity';
 import {
   Column,
   Entity,

@@ -11,7 +11,7 @@ import {
 import { ContactForm } from './entities/contact-form.entity';
 import { ContactFormService } from './contact-form.service';
 import { ContactFormDto } from './dto/contact-form.dto';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 
 @Controller('contact-form')
 export class ContactFormController {

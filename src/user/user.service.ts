@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { UserCredentials } from './entities/user.credentials.entity';
 import { encodePassword } from './../auth/utils.bcrypt';
 import { CreateUserCredentialsDTO } from './dto/create-user-credentials.dto';
-import { Address } from 'src/address/entities/address.entity';
+import { Address } from '../address/entities/address.entity';
 
 @Injectable()
 export class UserService {

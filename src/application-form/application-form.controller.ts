@@ -11,7 +11,7 @@ import {
 import { ApplicationFormDto } from './dto/application-form.dto';
 import { ApplicationForm } from './entities/application-form.entity';
 import { ApplicationFormService } from './application-form.service';
-import { ApplicationService } from 'src/application/application.service';
+import { ApplicationService } from '../application/application.service';
 
 @Controller('application-form')
 export class ApplicationFormController {

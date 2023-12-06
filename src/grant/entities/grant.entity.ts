@@ -6,8 +6,8 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Category } from '../../category/entities/category.entity';
-import { Activity } from 'src/activity/entites/activity.entity';
-import { Application } from 'src/application/entities/application.entity';
+import { Activity } from '../../activity/entites/activity.entity';
+import { Application } from '../../application/entities/application.entity';
 
 @Entity()
 export class Grant {

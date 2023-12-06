@@ -1,4 +1,4 @@
-import { Application } from 'src/application/entities/application.entity';
+import { Application } from '../../application/entities/application.entity';
 
 export class ApplicationFormDto {
   application: Application;

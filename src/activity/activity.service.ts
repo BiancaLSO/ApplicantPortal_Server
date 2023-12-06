@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ActivityDto } from './dto/activity.dto';
 import { Activity } from './entites/activity.entity';
-import { Status } from 'src/status/entities/status.entity';
+import { Status } from '../status/entities/status.entity';
 
 @Injectable()
 export class ActivityService {

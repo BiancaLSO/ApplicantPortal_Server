@@ -221,15 +221,11 @@ import {
   Connection,
   Repository,
 } from 'typeorm';
-import { Grant } from './entities/grant.entity';
-import { Category } from '../category/entities/category.entity';
-import { GrantController } from './grant.controller';
-import { GrantService } from './grant.service';
-import { CategoryService } from '../category/category.service';
+import { Grant } from './../src/grant/entities/grant.entity';
+import { Category } from './../src/category/entities/category.entity';
+import { AppModule } from './../src/app.module';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { AppModule } from '../app.module';
-import { GrantDto } from './dto/grant.dto';
-import { CategoryDto } from '../category/dto/category.dto';
+import { GrantDto } from './../src/grant/dto/grant.dto';
 
 describe('GrantController (e2e)', () => {
   let app: INestApplication;

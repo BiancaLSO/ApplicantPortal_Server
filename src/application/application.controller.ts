@@ -13,10 +13,10 @@ import {
 import { Application } from './entities/application.entity';
 import { ApplicationService } from './application.service';
 import { ApplicationDto } from './dto/application.dto';
-import { ActivityService } from 'src/activity/activity.service';
-import { GrantService } from 'src/grant/grant.service';
-import { UserService } from 'src/user/user.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ActivityService } from '../activity/activity.service';
+import { GrantService } from '../grant/grant.service';
+import { UserService } from '../user/user.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('application')

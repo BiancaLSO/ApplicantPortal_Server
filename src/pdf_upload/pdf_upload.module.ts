@@ -5,7 +5,7 @@ import { PDF } from './entities/pdf_upload.entity';
 import { PdfUploadService } from './pdf_upload.service';
 import { PdfUploadController } from './pdf_upload.controller';
 import { ActivityService } from '../activity/activity.service';
-import { Status } from 'src/status/entities/status.entity';
+import { Status } from '../status/entities/status.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Activity, PDF, Status])],

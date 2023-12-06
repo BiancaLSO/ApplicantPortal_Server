@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Status } from '../../status/entities/status.entity';
 import { PDF } from '../../pdf_upload/entities/pdf_upload.entity';
-import { Application } from 'src/application/entities/application.entity';
+import { Application } from '../../application/entities/application.entity';
 
 @Entity()
 export class Activity {
