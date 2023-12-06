@@ -92,9 +92,12 @@ export class ApplicationForm {
   @Column({ type: 'boolean', nullable: true })
   agreement_info: boolean;
 
+  @Column({ type: 'int', nullable: true })
+  application_id: number;
+
   @OneToOne(() => Application, (application) => application.id, {
     cascade: true,
   })
-  @JoinColumn()
+  @JoinColumn({ name: 'application_id' })
   application: Application;
 }

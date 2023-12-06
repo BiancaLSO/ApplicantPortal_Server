@@ -44,6 +44,7 @@ export class ApplicationFormService {
   }
 
   async callStoredProcedure(
+    applicationId: number,
     grantId: number,
     applicationFormDto: ApplicationFormDto,
   ): Promise<void> {
@@ -72,16 +73,15 @@ export class ApplicationFormService {
       is_catalog_used,
       event_date,
       municipality,
-      application_id,
       recedency_end_date,
       agreement_info,
     } = applicationFormDto;
 
     // Use these parameters when executing the stored procedure
-    await this.applicationFormRepository.query(
+    const result = await this.applicationFormRepository.query(
       'CALL insertapplicationform($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28)',
       [
-        application_id,
+        applicationId,
         grantId,
         requested_amount,
         overall_amount,
@@ -111,5 +111,6 @@ export class ApplicationFormService {
         municipality,
       ],
     );
+    return result;
   }
 }
