@@ -31,6 +31,13 @@ export class ApplicationFormService {
     });
   }
 
+  async findByApplicationId(id: number): Promise<ApplicationForm> {
+    return await this.applicationFormRepository.findOne({
+      where: { application: { id } }, // Use correct syntax here
+      relations: ['application'],
+    });
+  }
+
   async update(
     id: number,
     applicationFormDto: ApplicationFormDto,

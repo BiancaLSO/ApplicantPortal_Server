@@ -45,10 +45,10 @@ export class ApplicationFormController {
     @Body() applicationFormDto: ApplicationFormDto,
   ): Promise<void> {
     const activity = await this.activityService.create_activity({
-      name: 'Application opened',
+      name: 'Application submitted',
       date: new Date(),
       note: 'For any inquires contact the portal',
-      statusId: 1,
+      statusId: 2,
     });
     const user = await this.userService.findOne(userId);
     const grant = await this.grantService.findOne(grantId);
@@ -75,6 +75,11 @@ export class ApplicationFormController {
   @Get(':id')
   findById(@Param('id') id: number): Promise<ApplicationForm> {
     return this.applicationFormService.findById(+id);
+  }
+
+  @Get('/applicationId/:id')
+  findByApplicationId(@Param('id') id: number): Promise<ApplicationForm> {
+    return this.applicationFormService.findByApplicationId(+id);
   }
 
   @Put(':id')

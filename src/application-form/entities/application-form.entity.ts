@@ -14,16 +14,16 @@ export class ApplicationForm {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   project_title: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   experience_description: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   benefit_description: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   future_vision_description: string;
 
   @Column({ type: 'varchar', length: 45, nullable: true })

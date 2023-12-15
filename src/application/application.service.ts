@@ -29,6 +29,13 @@ export class ApplicationService {
     });
   }
 
+  async findByUserId(id: number): Promise<Application[]> {
+    return await this.applicationRepository.find({
+      where: { user: { id } }, // Use correct syntax here
+      relations: ['activities', 'grant', 'user'],
+    });
+  }
+
   async update(
     id: number,
     applicationDto: ApplicationDto,

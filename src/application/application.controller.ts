@@ -61,6 +61,11 @@ export class ApplicationController {
     return this.applicationService.findById(+id);
   }
 
+  @Get('/user-applications/:userId')
+  findByUserId(@Param('userId') userId: number): Promise<Application[]> {
+    return this.applicationService.findByUserId(+userId);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: number,
