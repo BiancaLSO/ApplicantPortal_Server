@@ -56,13 +56,13 @@ export class ApplicationForm {
   @Column({ type: 'numeric', nullable: true })
   overall_amount: number;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   recedency_name: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   project_description: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   project_country: string;
 
   @Column({ type: 'date', nullable: true })

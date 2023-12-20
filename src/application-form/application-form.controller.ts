@@ -60,6 +60,7 @@ export class ApplicationFormController {
     };
 
     const application = await this.applicationService.create(applicationDto);
+    console.log(applicationFormDto.recedency_end_date);
     return this.applicationFormService.callStoredProcedure(
       application.id,
       grantId,
