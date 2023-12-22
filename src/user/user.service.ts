@@ -94,6 +94,11 @@ export class UserService {
     });
   }
 
+  async findOneUserByCredentialsId(id: number) {
+    const userCredentials = await this.findOneUserCredential(id);
+    return userCredentials.user;
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const toUpdate = await this.userRepository.findOne({ where: { id } });
     if (!toUpdate) {
@@ -105,24 +110,7 @@ export class UserService {
   }
 
   async removeUserAndRelatedEntities(id: number) {
-    // Uncomment this when we have the Address Entity
-
-    //const user = await this.userRepository.findOne({ where: { id } });
-    // if (user) {
-    //   if (user.addressId) {
-    //     const address = await this.addressRepository.findOne(user.addressId);
-
-    //     if (address) {
-    //       address.user = null;
-    //       await this.addressRepository.save(address);
-    //     }
-    //   }
-
-    //   return { message: 'User and related entities deleted' };
-    // }
-
-    // throw new NotFoundException('User not found');
-
+    // delete user credentials as well
     return this.userRepository.delete(id);
   }
 }
