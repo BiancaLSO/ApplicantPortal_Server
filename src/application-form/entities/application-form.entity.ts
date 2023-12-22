@@ -26,22 +26,22 @@ export class ApplicationForm {
   @Column({ type: 'varchar', nullable: true })
   future_vision_description: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   traveler_name_and_position: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purpose_description: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departure_country: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departure_city: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   destination_country: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   destination_city: string;
 
   @Column({ type: 'date', nullable: true })
@@ -68,13 +68,13 @@ export class ApplicationForm {
   @Column({ type: 'date', nullable: true })
   recedency_start_date: Date;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
-  author_full_name: string;
+  @Column({ type: 'varchar', nullable: true })
+  author_full: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   event_location: string;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   target_group: string;
 
   @Column({ type: 'boolean', nullable: true })
@@ -83,7 +83,7 @@ export class ApplicationForm {
   @Column({ type: 'date', nullable: true })
   event_date: Date;
 
-  @Column({ type: 'varchar', length: 45, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   municipality: string;
 
   @Column({ type: 'date', nullable: true })

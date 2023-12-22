@@ -29,6 +29,21 @@ export class ActivityService {
     });
   }
 
+  findAllByApplicationId(id) {
+    return this.activityRepository.find({
+      where: { application: { id } }, // Use correct syntax here
+      relations: ['status', 'application'],
+    });
+  }
+
+  async isApplicationSubmitted(id) {
+    const activityList = await this.findAllByApplicationId(id);
+    const submitted = activityList.some((activity) => {
+      return activity.status.name === 'Submitted';
+    });
+    return submitted;
+  }
+
   findOne(id: number) {
     return this.activityRepository.findOne({
       where: { id: id },

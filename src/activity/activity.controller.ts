@@ -34,6 +34,11 @@ export class ActivityController {
     return this.activityService.findOne(+id);
   }
 
+  @Get('status/:id')
+  isApplicationSubmitted(@Param('id') id: string) {
+    return this.activityService.isApplicationSubmitted(+id);
+  }
+
   @Delete(':id')
   remove_activity(@Param('id') id: string) {
     return this.activityService.remove_activity(+id);

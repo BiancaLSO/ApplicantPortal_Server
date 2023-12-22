@@ -42,8 +42,13 @@ export class ApplicationFormService {
     id: number,
     applicationFormDto: ApplicationFormDto,
   ): Promise<ApplicationForm> {
-    await this.applicationFormRepository.update(id, applicationFormDto);
-    return this.findById(id);
+    const submittedForm = await this.findByApplicationId(id);
+    await this.applicationFormRepository.update(
+      submittedForm.id,
+      applicationFormDto,
+    );
+    const resubmittedForm = await this.findById(submittedForm.id);
+    return resubmittedForm;
   }
 
   async remove(id: number): Promise<void> {
@@ -74,7 +79,7 @@ export class ApplicationFormService {
       project_description,
       project_country,
       recedency_start_date,
-      author_full_name,
+      author_full,
       event_location,
       target_group,
       is_catalog_used,
@@ -110,7 +115,7 @@ export class ApplicationFormService {
         project_country,
         recedency_start_date,
         recedency_end_date,
-        author_full_name,
+        author_full,
         event_location,
         target_group,
         is_catalog_used,

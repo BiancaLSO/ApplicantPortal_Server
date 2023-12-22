@@ -46,6 +46,7 @@ export class ApplicationController {
       grant,
       user,
       activities: [activity],
+      isActive: true,
     };
 
     return this.applicationService.create(applicationDto);
