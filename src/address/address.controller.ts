@@ -6,6 +6,7 @@ import {
   Param,
   Put,
   Delete,
+  Patch,
 } from '@nestjs/common';
 
 import { Address } from './entities/address.entity';
@@ -31,13 +32,13 @@ export class AddressController {
     return this.addressService.findById(+id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   update(
     @Param('id') id: number,
     @Body() updateAddressDto: AddressDto,
   ): Promise<Address> {
     console.log('hello');
-    return this.addressService.update(+id, updateAddressDto);
+    return this.addressService.update(id, updateAddressDto);
   }
 
   @Delete(':id')

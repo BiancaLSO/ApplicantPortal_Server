@@ -43,7 +43,7 @@ export class ApplicationFormController {
     @Param('userId') userId: number,
     @Param('grantId') grantId: number,
     @Body() applicationFormDto: ApplicationFormDto,
-  ): Promise<void> {
+  ): Promise<any> {
     const activity = await this.activityService.create_activity({
       name: 'Application submitted',
       date: new Date(),
@@ -61,11 +61,12 @@ export class ApplicationFormController {
 
     const application = await this.applicationService.create(applicationDto);
     console.log(applicationFormDto.recedency_end_date);
-    return this.applicationFormService.callStoredProcedure(
+    this.applicationFormService.callStoredProcedure(
       application.id,
       grantId,
       applicationFormDto,
     );
+    return application.id;
   }
 
   @Get()
