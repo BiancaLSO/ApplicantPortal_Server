@@ -26,6 +26,11 @@ export class UserController {
     return this.userService.findOneUserCredential(+id);
   }
 
+  @Get('/credentials/:id/user')
+  findOneUserByCredentialsId(@Param('id') id: string) {
+    return this.userService.findOneUserByCredentialsId(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);

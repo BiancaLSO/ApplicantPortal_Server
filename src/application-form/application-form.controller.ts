@@ -43,12 +43,12 @@ export class ApplicationFormController {
     @Param('userId') userId: number,
     @Param('grantId') grantId: number,
     @Body() applicationFormDto: ApplicationFormDto,
-  ): Promise<number> {
+  ): Promise<any> {
     const activity = await this.activityService.create_activity({
       name: 'Application submitted',
       date: new Date(),
       note: 'For any inquires contact the portal',
-      statusId: 2,
+      statusId: 1,
     });
     const user = await this.userService.findOne(userId);
     const grant = await this.grantService.findOne(grantId);

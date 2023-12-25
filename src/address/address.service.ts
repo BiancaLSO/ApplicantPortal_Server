@@ -27,6 +27,7 @@ export class AddressService {
   }
 
   async update(id: number, addressDto: AddressDto): Promise<Address> {
+    console.log('the id', id);
     await this.addressRepository.update(id, addressDto);
     return this.findById(id);
   }
