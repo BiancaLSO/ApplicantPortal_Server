@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { ActivityDto } from './dto/activity.dto';
 import { Activity } from './entites/activity.entity';
 import { Status } from '../status/entities/status.entity';
+import { Application } from 'src/application/entities/application.entity';
 
 @Injectable()
 export class ActivityService {
@@ -12,17 +13,29 @@ export class ActivityService {
     private activityRepository: Repository<Activity>,
     @InjectRepository(Status)
     private statusRepository: Repository<Status>,
+    @InjectRepository(Application)
+    private applicationRepository: Repository<Application>,
   ) {}
 
   async create_activity(body) {
     const status = await this.statusRepository.findOne({
-      where: { id: body.statusId },
+      where: { name: body.status },
     });
 
     const activityDto = new ActivityDto(body.name, body.date, body.note);
     activityDto.status = status;
+    console.log(body.id);
+    if (body.id) {
+      const numericId = Number(body.id);
+      const application = await this.applicationRepository.findOne({
+        where: { id: numericId },
+      });
+      console.log('this the new shit', application);
+      activityDto.application = application;
+    }
     return this.activityRepository.save(activityDto);
   }
+
   findAll() {
     return this.activityRepository.find({
       relations: ['status', 'attachments'],

@@ -28,4 +28,5 @@ export class ApplicationFormDto {
   municipality: string;
   recedency_end_date: Date;
   agreement_info: boolean;
+  form_step: number;
 }

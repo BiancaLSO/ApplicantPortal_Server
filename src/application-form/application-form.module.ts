@@ -16,6 +16,7 @@ import { Grant } from '../grant/entities/grant.entity';
 import { Address } from '../address/entities/address.entity';
 import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { Status } from '../status/entities/status.entity';
+import { StatusService } from 'src/status/status.service';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { Status } from '../status/entities/status.entity';
     ActivityService,
     UserService,
     GrantService,
+    StatusService,
   ],
   controllers: [ApplicationFormController],
   exports: [ApplicationFormService],

@@ -13,6 +13,7 @@ import { Grant } from '../grant/entities/grant.entity';
 import { UserCredentials } from '../user/entities/user.credentials.entity';
 import { Address } from '../address/entities/address.entity';
 import { Status } from '../status/entities/status.entity';
+import { StatusService } from 'src/status/status.service';
 
 // import { ActivityModule } from '../activity/activity.module';
 // import { GrantModule } from '../grant/grant.module';
@@ -33,7 +34,13 @@ import { Status } from '../status/entities/status.entity';
     // GrantModule,
     // UserModule,
   ],
-  providers: [ApplicationService, GrantService, UserService, ActivityService],
+  providers: [
+    ApplicationService,
+    GrantService,
+    UserService,
+    ActivityService,
+    StatusService,
+  ],
   controllers: [ApplicationController],
   exports: [ApplicationService],
 })

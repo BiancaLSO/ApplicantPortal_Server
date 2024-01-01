@@ -3,20 +3,37 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NotificationDto } from './dto/notification.dto';
 import { Notification } from './entites/notification.entity';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class NotificationService {
   constructor(
+    private userService: UserService,
     @InjectRepository(Notification)
     private notificationRepository: Repository<Notification>,
   ) {}
 
-  create_notification(notificationDto: NotificationDto) {
-    return this.notificationRepository.save(notificationDto);
+  async create_notification(body: any) {
+    console.log('hello');
+    const user = await this.userService.findOne(body.userId);
+    const newBody = {
+      user: user,
+      title: body.title,
+      description: body.description,
+      sent_date: new Date(),
+      isRead: false,
+    };
+    return await this.notificationRepository.save(newBody);
   }
 
   findAll() {
     return this.notificationRepository.find();
+  }
+
+  async findAllByUserId(id: number): Promise<Notification[]> {
+    return await this.notificationRepository.find({
+      where: { user: { id } },
+    });
   }
 
   findOne(id: number) {

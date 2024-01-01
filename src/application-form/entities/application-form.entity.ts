@@ -92,6 +92,9 @@ export class ApplicationForm {
   @Column({ type: 'boolean', nullable: true })
   agreement_info: boolean;
 
+  @Column({ type: 'numeric', nullable: true })
+  form_step: number;
+
   @Column({ type: 'int', nullable: true })
   application_id: number;
 
