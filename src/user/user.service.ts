@@ -2,11 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './../user/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { UserCredentials } from './entities/user.credentials.entity';
 import { encodePassword } from './../auth/utils.bcrypt';
 import { CreateUserCredentialsDTO } from './dto/create-user-credentials.dto';
 import { Address } from '../address/entities/address.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { AddressDto } from 'src/address/dto/address.dto';
 
 @Injectable()
 export class UserService {
@@ -21,41 +23,74 @@ export class UserService {
 
   async createUserandCredentials(
     createUserCredentialsDto: CreateUserCredentialsDTO,
+    createUserDto?: CreateUserDto,
+    addressDto?: AddressDto,
   ) {
-    const existingUser = await this.userCredentialsRepository.findOneBy({
-      username: createUserCredentialsDto.username,
+    const existingUser = await this.userCredentialsRepository.findOne({
+      where: {
+        username: ILike(createUserCredentialsDto.username),
+      },
     });
+    console.log('existingUser:', existingUser);
+
     if (existingUser) {
       throw new Error('Username already exists');
     } else {
       const user = new User();
+      if (createUserDto) {
+        user.firstName = createUserDto.firstName;
+        user.lastName = createUserDto.lastName;
+        user.phone = createUserDto.phone;
+        user.email = createUserDto.email;
+        user.cpr = createUserDto.cpr;
 
-      const existingAddress = await this.addressRepository.findOne({
-        where: {
-          zipCode: 2300,
-          city: 'Kobenhavn S',
-          street: 'Richard Mortensens Vej',
-        },
-      });
-
-      if (!existingAddress) {
-        const newAddress = await this.addressRepository.save({
-          zipCode: 2300,
-          city: 'Kobenhavn S',
-          street: 'Richard Mortensens Vej',
+        const existingUserAddress = await this.addressRepository.findOne({
+          where: {
+            zipCode: addressDto.zipCode,
+            city: addressDto.city,
+            street: addressDto.street,
+          },
         });
 
-        user.address = newAddress;
-      } else {
-        user.address = existingAddress;
-      }
+        if (!existingUserAddress) {
+          const newAddress = await this.addressRepository.save({
+            zipCode: addressDto.zipCode,
+            city: addressDto.city,
+            street: addressDto.street,
+          });
 
+          user.address = newAddress;
+        } else {
+          user.address = existingUserAddress;
+        }
+      } else {
+        const existingAddress = await this.addressRepository.findOne({
+          where: {
+            zipCode: 2300,
+            city: 'Kobenhavn S',
+            street: 'Richard Mortensens Vej',
+          },
+        });
+
+        if (!existingAddress) {
+          const newAddress = await this.addressRepository.save({
+            zipCode: 2300,
+            city: 'Kobenhavn S',
+            street: 'Richard Mortensens Vej',
+          });
+
+          user.address = newAddress;
+        } else {
+          user.address = existingAddress;
+        }
+      }
       user.isNotified = false;
 
       const savedUser = await this.userRepository.save(user);
       console.log('saved user', savedUser);
 
       const userCredentials = new UserCredentials();
+      console.log('user credentials', createUserCredentialsDto);
       userCredentials.username = createUserCredentialsDto.username;
       userCredentials.password = await encodePassword(
         createUserCredentialsDto?.password,

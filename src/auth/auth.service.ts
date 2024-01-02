@@ -3,6 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { comparePasswords } from './../auth/utils.bcrypt';
 import { UserService } from './../user/user.service';
 import { CreateUserCredentialsDTO } from './../user/dto/create-user-credentials.dto';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { AddressDto } from 'src/address/dto/address.dto';
 
 @Injectable()
 export class AuthService {
@@ -11,8 +13,16 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signup(createUserCredentialsDto: CreateUserCredentialsDTO) {
-    return this.userService.createUserandCredentials(createUserCredentialsDto);
+  async signup(
+    createUserCredentialsDto: CreateUserCredentialsDTO,
+    createUserDto?: CreateUserDto,
+    addressDto?: AddressDto,
+  ) {
+    return this.userService.createUserandCredentials(
+      createUserCredentialsDto,
+      createUserDto,
+      addressDto,
+    );
   }
 
   async validateUser(username: string, password: string): Promise<any> {

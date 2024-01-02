@@ -32,9 +32,9 @@ export class CreateUserDto {
     phone: string,
     cpr: string,
     email: string,
-    isNotified: boolean,
-    addresId: number,
-    notificationId: number,
+    isNotified?: boolean,
+    addresId?: number,
+    notificationId?: number,
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
