@@ -23,6 +23,13 @@ export class StatusService {
     return this.statusRepository.findOneBy({ id: id });
   }
 
+  findOneByName(name: string) {
+    console.log('name in repo', name);
+    return this.statusRepository.findOne({
+      where: { name: name },
+    });
+  }
+
   remove_status(id: number) {
     return this.statusRepository.delete(id);
   }

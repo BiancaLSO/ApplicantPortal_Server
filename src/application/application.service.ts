@@ -44,6 +44,16 @@ export class ApplicationService {
     return this.findById(id);
   }
 
+  async archive(id: number, value): Promise<Application> {
+    await this.applicationRepository
+      .createQueryBuilder()
+      .update(Application)
+      .set({ isActive: value.value })
+      .where({ id })
+      .execute();
+    return this.findById(id);
+  }
+
   async remove(id: number): Promise<void> {
     await this.applicationRepository.delete(id);
   }

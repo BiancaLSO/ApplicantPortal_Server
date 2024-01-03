@@ -15,6 +15,9 @@ export class Application {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  isActive: boolean;
+
   @OneToMany(() => Activity, (activity) => activity.application)
   activities: Activity[];
 

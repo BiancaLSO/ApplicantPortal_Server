@@ -20,7 +20,7 @@ export class ApplicationFormDto {
   project_description: string;
   project_country: string;
   recedency_start_date: Date;
-  author_full_name: string;
+  author_full: string;
   event_location: string;
   target_group: string;
   is_catalog_used: boolean;
@@ -28,4 +28,5 @@ export class ApplicationFormDto {
   municipality: string;
   recedency_end_date: Date;
   agreement_info: boolean;
+  form_step: number;
 }

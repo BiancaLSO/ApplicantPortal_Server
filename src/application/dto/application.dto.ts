@@ -6,4 +6,5 @@ export class ApplicationDto {
   grant: Grant;
   user: User;
   activities: Activity[];
+  isActive: boolean;
 }

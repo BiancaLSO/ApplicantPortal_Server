@@ -29,6 +29,12 @@ export class StatusController {
     return this.statusService.findOne(+id);
   }
 
+  @Get('findByName/:name')
+  findOneByName(@Param('name') name: string) {
+    console.log('got the name', name);
+    return this.statusService.findOneByName(name);
+  }
+
   @Delete(':id')
   remove_status(@Param('id') id: string) {
     return this.statusService.remove_status(+id);

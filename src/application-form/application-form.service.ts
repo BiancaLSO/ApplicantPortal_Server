@@ -42,8 +42,13 @@ export class ApplicationFormService {
     id: number,
     applicationFormDto: ApplicationFormDto,
   ): Promise<ApplicationForm> {
-    await this.applicationFormRepository.update(id, applicationFormDto);
-    return this.findById(id);
+    const submittedForm = await this.findByApplicationId(id);
+    await this.applicationFormRepository.update(
+      submittedForm.id,
+      applicationFormDto,
+    );
+    const resubmittedForm = await this.findById(submittedForm.id);
+    return resubmittedForm;
   }
 
   async remove(id: number): Promise<void> {
@@ -74,7 +79,7 @@ export class ApplicationFormService {
       project_description,
       project_country,
       recedency_start_date,
-      author_full_name,
+      author_full,
       event_location,
       target_group,
       is_catalog_used,
@@ -82,11 +87,12 @@ export class ApplicationFormService {
       municipality,
       recedency_end_date,
       agreement_info,
+      form_step,
     } = applicationFormDto;
 
     // Use these parameters when executing the stored procedure
     const result = await this.applicationFormRepository.query(
-      'CALL insertapplicationform($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28)',
+      'CALL insertapplicationform($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29)',
       [
         applicationId,
         grantId,
@@ -110,12 +116,13 @@ export class ApplicationFormService {
         project_country,
         recedency_start_date,
         recedency_end_date,
-        author_full_name,
+        author_full,
         event_location,
         target_group,
         is_catalog_used,
         event_date,
         municipality,
+        form_step,
       ],
     );
     return result;

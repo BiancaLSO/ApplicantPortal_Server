@@ -11,13 +11,19 @@ import { LocalAuthGuard } from './local-auth.guard';
 import { CreateUserCredentialsDTO } from './../user/dto/create-user-credentials.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { AddressDto } from 'src/address/dto/address.dto';
+import { NotificationService } from 'src/notification/notification.service';
+import { UserService } from 'src/user/user.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private notificationservice: NotificationService,
+    private userService: UserService,
+  ) {}
 
   @Post('/signup')
-  async signupTenant(@Body() body: any) {
+  async signup(@Body() body: any) {
     const userCredentials = new CreateUserCredentialsDTO(
       body.username,
       body.password,
@@ -31,7 +37,16 @@ export class AuthController {
       body?.cpr,
     );
     const address = new AddressDto(body?.street, body?.city, body?.zipCode);
-    return this.authService.signup(userCredentials, user, address);
+
+    const msg = {
+      userId: userId,
+      title: 'Welcome to SLKS Portal!',
+      description:
+        'Welcome to the Grant Applicant Portal of The Ministry of Culture. Please make sure to fill out/ update your profile information as that will be taken as default personal details for every application.',
+    };
+    const createdUser = this.authService.signup(userCredentials, user, address);
+    await this.notificationservice.create_notification(msg);
+    return createdUser;
   }
 
   // login

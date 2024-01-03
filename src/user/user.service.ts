@@ -97,7 +97,8 @@ export class UserService {
       );
       userCredentials.user = savedUser;
 
-      return await this.userCredentialsRepository.save(userCredentials);
+      await this.userCredentialsRepository.save(userCredentials);
+      return savedUser.id;
     }
   }
 
