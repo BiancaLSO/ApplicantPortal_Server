@@ -28,7 +28,7 @@ export class AuthController {
       body.username,
       body.password,
     );
-    console.log('ctrl', userCredentials);
+    console.log('ctrl');
     const user = new CreateUserDto(
       body?.firstName,
       body?.lastName,
@@ -37,20 +37,22 @@ export class AuthController {
       body?.cpr,
     );
     const address = new AddressDto(body?.street, body?.city, body?.zipCode);
-    const createdUserId = this.authService.signup(
+    const createdUserId = await this.authService.signup(
       userCredentials,
       user,
       address,
     );
 
-    const msg = {
-      userId: createdUserId,
-      title: 'Welcome to SLKS Portal!',
-      description:
-        'Welcome to the Grant Applicant Portal of The Ministry of Culture. Please make sure to fill out/ update your profile information as that will be taken as default personal details for every application.',
-    };
+    if (createdUserId) {
+      const msg = {
+        userId: createdUserId,
+        title: 'Welcome to SLKS Portal!',
+        description:
+          'Welcome to the Grant Applicant Portal of The Ministry of Culture. Please make sure to fill out/ update your profile information as that will be taken as default personal details for every application.',
+      };
 
-    await this.notificationservice.create_notification(msg);
+      await this.notificationservice.create_notification(msg);
+    }
     return createdUserId;
   }
 
