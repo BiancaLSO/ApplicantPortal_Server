@@ -28,7 +28,9 @@ export class GrantController {
       body.link,
     );
 
-    grantDto.category = body.category;
+    const category = await this.categoryService.findOne(body.categoryId);
+
+    grantDto.category = category;
 
     return this.grantService.create_grant(grantDto);
   }
