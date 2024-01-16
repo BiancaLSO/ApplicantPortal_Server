@@ -50,6 +50,7 @@ export class ActivityService {
   }
 
   async isApplicationSubmitted(id) {
+    console.log('yup', id);
     const activityList = await this.findAllByApplicationId(id);
     const submitted = activityList.some((activity) => {
       return activity.status.name === 'Submitted';

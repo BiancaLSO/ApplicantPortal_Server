@@ -196,7 +196,7 @@ export class ApplicationFormController {
         console.log('it worked');
         const msg = {
           userId: user.id,
-          title: 'Application Resubmitted!',
+          title: 'Application Submitted!',
           description: `Hi ${user.firstName}! Your application ${id} has now been submitted. The processing time for your application can take up to 10 days. If you have any questions or inquries about the progress of your application, please feel free to contact the SLKS Portal.`,
         };
 
