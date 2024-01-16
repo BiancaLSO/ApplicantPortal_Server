@@ -17,6 +17,8 @@ import { Address } from '../address/entities/address.entity';
 import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { Status } from '../status/entities/status.entity';
 import { StatusService } from 'src/status/status.service';
+import { NotificationService } from 'src/notification/notification.service';
+import { Notification } from 'src/notification/entites/notification.entity';
 
 @Module({
   imports: [
@@ -30,6 +32,7 @@ import { StatusService } from 'src/status/status.service';
       Address,
       Status,
       PDF,
+      Notification,
     ]),
   ],
   providers: [
@@ -38,7 +41,7 @@ import { StatusService } from 'src/status/status.service';
     ActivityService,
     UserService,
     GrantService,
-    StatusService,
+    NotificationService,
   ],
   controllers: [ApplicationFormController],
   exports: [ApplicationFormService],

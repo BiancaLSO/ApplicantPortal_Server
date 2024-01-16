@@ -14,6 +14,8 @@ import { UserCredentials } from '../user/entities/user.credentials.entity';
 import { Address } from '../address/entities/address.entity';
 import { Status } from '../status/entities/status.entity';
 import { StatusService } from 'src/status/status.service';
+import { NotificationService } from 'src/notification/notification.service';
+import { Notification } from 'src/notification/entites/notification.entity';
 
 // import { ActivityModule } from '../activity/activity.module';
 // import { GrantModule } from '../grant/grant.module';
@@ -29,6 +31,7 @@ import { StatusService } from 'src/status/status.service';
       UserCredentials,
       Address,
       Status,
+      Notification,
     ]),
     // ActivityModule,
     // GrantModule,
@@ -39,7 +42,7 @@ import { StatusService } from 'src/status/status.service';
     GrantService,
     UserService,
     ActivityService,
-    StatusService,
+    NotificationService,
   ],
   controllers: [ApplicationController],
   exports: [ApplicationService],

@@ -19,6 +19,7 @@ import { UserService } from '../user/user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { StatusService } from 'src/status/status.service';
+import { NotificationService } from 'src/notification/notification.service';
 
 @Controller('application')
 export class ApplicationController {
@@ -27,7 +28,7 @@ export class ApplicationController {
     private readonly activityService: ActivityService,
     private readonly grantService: GrantService,
     private readonly userService: UserService,
-    private readonly statusService: StatusService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -82,7 +83,11 @@ export class ApplicationController {
 
   @UseGuards(JwtAuthGuard)
   @Put('/archive/:id')
-  async archive(@Param('id') id: string, @Body() value): Promise<Application> {
+  async archive(
+    @Param('id') id: string,
+    @Req() req,
+    @Body() value,
+  ): Promise<Application> {
     console.log(value);
     await this.activityService.create_activity({
       id: id,
@@ -91,6 +96,23 @@ export class ApplicationController {
       note: 'Application has been archived, but not deleted. ',
       status: 'Archived',
     });
+
+    if (req) {
+      console.log('the shit', req.user);
+      const user = await this.userService.findOneUserByCredentialsId(
+        req.user.userId,
+      );
+      if (user.id) {
+        console.log('it worked');
+        const msg = {
+          userId: user.id,
+          title: 'Application Archived!',
+          description: `Hi ${user.firstName}! Your application ${id} has now been archived. Your application will be stored in our database for the next 6 months for legal purposes, after which it will be deleted automatically.If you have any questions or inquries, please feel free to contact the SLKS Portal.`,
+        };
+
+        await this.notificationService.create_notification(msg);
+      }
+    }
     return await this.applicationService.archive(+id, value);
   }
 

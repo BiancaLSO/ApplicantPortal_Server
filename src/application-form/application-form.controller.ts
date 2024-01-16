@@ -8,6 +8,7 @@ import {
   Delete,
   ConsoleLogger,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 
 import { ApplicationFormDto } from './dto/application-form.dto';
@@ -20,6 +21,7 @@ import { ApplicationDto } from 'src/application/dto/application.dto';
 import { GrantService } from 'src/grant/grant.service';
 import { StatusService } from 'src/status/status.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { NotificationService } from 'src/notification/notification.service';
 
 @Controller('application-form')
 export class ApplicationFormController {
@@ -29,7 +31,7 @@ export class ApplicationFormController {
     private readonly activityService: ActivityService,
     private readonly userService: UserService,
     private readonly grantService: GrantService,
-    private readonly statusService: StatusService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -81,6 +83,26 @@ export class ApplicationFormController {
 
     const application = await this.applicationService.create(applicationDto);
 
+    if (application) {
+      if (body.submission) {
+        const msg = {
+          userId: user.id,
+          title: 'Application Submitted!',
+          description: `Hi ${user.firstName}! Your application ${application.id} for ${application.grant.title} has now been submitted. The processing time for your application may take up to 10 days. If you have any questions or inquries about the progress of your application, please feel free to contact the SLKS Portal.`,
+        };
+
+        await this.notificationService.create_notification(msg);
+      } else {
+        const msg = {
+          userId: user.id,
+          title: 'Application Created!',
+          description: `Hi ${user.firstName}! Your application ${application.id} for ${application.grant.title} has now been created. The application is currently only available for your viewing. If you would like for the application to be processed, you would need to send in the application by ${application.grant.end_date}.`,
+        };
+
+        await this.notificationService.create_notification(msg);
+      }
+    }
+
     this.applicationFormService.callStoredProcedure(
       application.id,
       grantId,
@@ -118,6 +140,7 @@ export class ApplicationFormController {
   @Put(':id')
   async update(
     @Param('id') id: number,
+    @Req() req,
     @Body() updateApplicationFormDto: ApplicationFormDto,
   ): Promise<ApplicationForm> {
     await this.activityService.create_activity({
@@ -128,6 +151,23 @@ export class ApplicationFormController {
       status: 'Resubmitted',
     });
 
+    if (req) {
+      console.log('the shit', req.user);
+      const user = await this.userService.findOneUserByCredentialsId(
+        req.user.userId,
+      );
+      if (user.id) {
+        console.log('it worked');
+        const msg = {
+          userId: user.id,
+          title: 'Application Resubmitted!',
+          description: `Hi ${user.firstName}! Your application ${id} has now been edited an resubmitted. Due to the resubmission, the processing time for your application may be prolonged up to 2 weeks. If you have any questions or inquries about the progress of your application, please feel free to contact the SLKS Portal.`,
+        };
+
+        await this.notificationService.create_notification(msg);
+      }
+    }
+
     return this.applicationFormService.update(+id, updateApplicationFormDto);
   }
 
@@ -135,6 +175,7 @@ export class ApplicationFormController {
   @Put('submit/:id')
   async submitSaved(
     @Param('id') id: number,
+    @Req() req,
     @Body() updateApplicationFormDto: ApplicationFormDto,
   ): Promise<ApplicationForm> {
     console.log('im here');
@@ -146,6 +187,22 @@ export class ApplicationFormController {
       status: 'Submitted',
     });
 
+    if (req) {
+      console.log('the shit', req.user);
+      const user = await this.userService.findOneUserByCredentialsId(
+        req.user.userId,
+      );
+      if (user.id) {
+        console.log('it worked');
+        const msg = {
+          userId: user.id,
+          title: 'Application Resubmitted!',
+          description: `Hi ${user.firstName}! Your application ${id} has now been submitted. The processing time for your application can take up to 10 days. If you have any questions or inquries about the progress of your application, please feel free to contact the SLKS Portal.`,
+        };
+
+        await this.notificationService.create_notification(msg);
+      }
+    }
     return this.applicationFormService.update(+id, updateApplicationFormDto);
   }
 
