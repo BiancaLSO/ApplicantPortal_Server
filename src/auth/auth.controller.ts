@@ -28,13 +28,12 @@ export class AuthController {
       body.username,
       body.password,
     );
-    console.log('ctrl');
     const user = new CreateUserDto(
       body?.firstName,
       body?.lastName,
       body?.phone,
-      body?.email,
       body?.cpr,
+      body?.email,
     );
     const address = new AddressDto(body?.street, body?.city, body?.zipCode);
     const createdUserId = await this.authService.signup(

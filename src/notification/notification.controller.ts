@@ -53,7 +53,6 @@ export class NotificationController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   editColumn(@Param('id') id: string, @Body() body) {
-    console.log(body);
     return this.notificationService.editColumn(+id, body.isRead);
   }
 

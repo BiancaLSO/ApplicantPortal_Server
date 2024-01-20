@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import { Repository } from 'typeorm';
-
 import { Address } from './entities/address.entity';
 import { AddressDto } from './dto/address.dto';
 
@@ -27,7 +25,6 @@ export class AddressService {
   }
 
   async update(id: number, addressDto: AddressDto): Promise<Address> {
-    console.log('the id', id);
     await this.addressRepository.update(id, addressDto);
     return this.findById(id);
   }

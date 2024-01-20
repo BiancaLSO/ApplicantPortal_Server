@@ -6,11 +6,9 @@ import {
   Put,
   Param,
   Delete,
-  ConsoleLogger,
   UseGuards,
   Req,
 } from '@nestjs/common';
-
 import { ApplicationFormDto } from './dto/application-form.dto';
 import { ApplicationForm } from './entities/application-form.entity';
 import { ApplicationFormService } from './application-form.service';
@@ -19,7 +17,6 @@ import { ActivityService } from 'src/activity/activity.service';
 import { UserService } from 'src/user/user.service';
 import { ApplicationDto } from 'src/application/dto/application.dto';
 import { GrantService } from 'src/grant/grant.service';
-import { StatusService } from 'src/status/status.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { NotificationService } from 'src/notification/notification.service';
 
@@ -37,7 +34,6 @@ export class ApplicationFormController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() body): Promise<ApplicationForm> {
-    console.log(body.applicationId);
     const application = await this.applicationService.findById(
       body.applicationId,
     );
@@ -53,7 +49,6 @@ export class ApplicationFormController {
     @Param('grantId') grantId: number,
     @Body() body,
   ): Promise<any> {
-    console.log(body);
     let activity;
     if (body.submission) {
       activity = await this.activityService.create_activity({
@@ -70,7 +65,6 @@ export class ApplicationFormController {
         status: 'Not submitted',
       });
     }
-    console.log(activity);
     const user = await this.userService.findOne(userId);
     const grant = await this.grantService.findOne(grantId);
 
@@ -152,12 +146,10 @@ export class ApplicationFormController {
     });
 
     if (req) {
-      console.log('the shit', req.user);
       const user = await this.userService.findOneUserByCredentialsId(
         req.user.userId,
       );
       if (user.id) {
-        console.log('it worked');
         const msg = {
           userId: user.id,
           title: 'Application Resubmitted!',
@@ -178,7 +170,6 @@ export class ApplicationFormController {
     @Req() req,
     @Body() updateApplicationFormDto: ApplicationFormDto,
   ): Promise<ApplicationForm> {
-    console.log('im here');
     await this.activityService.create_activity({
       id: id,
       name: 'Application opened',
@@ -188,12 +179,10 @@ export class ApplicationFormController {
     });
 
     if (req) {
-      console.log('the shit', req.user);
       const user = await this.userService.findOneUserByCredentialsId(
         req.user.userId,
       );
       if (user.id) {
-        console.log('it worked');
         const msg = {
           userId: user.id,
           title: 'Application Submitted!',

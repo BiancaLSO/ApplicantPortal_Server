@@ -24,13 +24,11 @@ export class ActivityService {
 
     const activityDto = new ActivityDto(body.name, body.date, body.note);
     activityDto.status = status;
-    console.log(body.id);
     if (body.id) {
       const numericId = Number(body.id);
       const application = await this.applicationRepository.findOne({
         where: { id: numericId },
       });
-      console.log('this the new shit', application);
       activityDto.application = application;
     }
     return this.activityRepository.save(activityDto);
@@ -44,13 +42,12 @@ export class ActivityService {
 
   findAllByApplicationId(id) {
     return this.activityRepository.find({
-      where: { application: { id } }, // Use correct syntax here
+      where: { application: { id } },
       relations: ['status', 'application'],
     });
   }
 
   async isApplicationSubmitted(id) {
-    console.log('yup', id);
     const activityList = await this.findAllByApplicationId(id);
     const submitted = activityList.some((activity) => {
       return activity.status.name === 'Submitted';

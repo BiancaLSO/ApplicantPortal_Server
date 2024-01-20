@@ -31,7 +31,6 @@ export class UserService {
         username: ILike(createUserCredentialsDto.username),
       },
     });
-    console.log('existingUser:', existingUser);
 
     if (existingUser) {
       throw new Error('Username already exists');
@@ -87,10 +86,8 @@ export class UserService {
       user.isNotified = false;
 
       const savedUser = await this.userRepository.save(user);
-      console.log('saved user', savedUser);
 
       const userCredentials = new UserCredentials();
-      console.log('user credentials', createUserCredentialsDto);
       userCredentials.username = createUserCredentialsDto.username;
       userCredentials.password = await encodePassword(
         createUserCredentialsDto?.password,

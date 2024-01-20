@@ -17,8 +17,6 @@ import { ActivityService } from '../activity/activity.service';
 import { GrantService } from '../grant/grant.service';
 import { UserService } from '../user/user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { AuthGuard } from '@nestjs/passport';
-import { StatusService } from 'src/status/status.service';
 import { NotificationService } from 'src/notification/notification.service';
 
 @Controller('application')
@@ -42,8 +40,6 @@ export class ApplicationController {
     });
     const grant = await this.grantService.findOne(body.grantId);
     const user = await this.userService.findOne(body.userId);
-
-    console.log('the returned activity', activity);
 
     const applicationDto: ApplicationDto = {
       grant,
@@ -88,7 +84,6 @@ export class ApplicationController {
     @Req() req,
     @Body() value,
   ): Promise<Application> {
-    console.log(value);
     await this.activityService.create_activity({
       id: id,
       name: 'Application closed by user',
@@ -98,12 +93,10 @@ export class ApplicationController {
     });
 
     if (req) {
-      console.log('the shit', req.user);
       const user = await this.userService.findOneUserByCredentialsId(
         req.user.userId,
       );
       if (user.id) {
-        console.log('it worked');
         const msg = {
           userId: user.id,
           title: 'Application Archived!',

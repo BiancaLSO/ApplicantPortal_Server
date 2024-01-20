@@ -4,7 +4,6 @@ import {
   Body,
   Get,
   Param,
-  Put,
   Delete,
   Patch,
 } from '@nestjs/common';
@@ -37,7 +36,6 @@ export class AddressController {
     @Param('id') id: number,
     @Body() updateAddressDto: AddressDto,
   ): Promise<Address> {
-    console.log('hello');
     return this.addressService.update(id, updateAddressDto);
   }
 

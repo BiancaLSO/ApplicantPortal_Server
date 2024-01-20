@@ -31,7 +31,6 @@ export class StatusController {
 
   @Get('findByName/:name')
   findOneByName(@Param('name') name: string) {
-    console.log('got the name', name);
     return this.statusService.findOneByName(name);
   }
 

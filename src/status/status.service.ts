@@ -24,7 +24,6 @@ export class StatusService {
   }
 
   findOneByName(name: string) {
-    console.log('name in repo', name);
     return this.statusRepository.findOne({
       where: { name: name },
     });
