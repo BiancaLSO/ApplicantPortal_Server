@@ -11,11 +11,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { NotificationService } from './notification.service';
-import { User } from 'src/user/entities/user.entity';
-import { UserService } from 'src/user/user.service';
-import { NotificationDto } from './dto/notification.dto';
+import { UserService } from '../user/user.service';
 import { Notification } from './entites/notification.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('notification')
 export class NotificationController {

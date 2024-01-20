@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { ActivityDto } from './dto/activity.dto';
 import { Activity } from './entites/activity.entity';
 import { Status } from '../status/entities/status.entity';
-import { Application } from 'src/application/entities/application.entity';
+import { Application } from '../application/entities/application.entity';
 
 @Injectable()
 export class ActivityService {

@@ -9,7 +9,6 @@ import { Application } from '../application/entities/application.entity';
 import { ContactForm } from '../contact-form/entities/contact-form.entity';
 import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { UserService } from '../user/user.service';
-import { UserController } from '../user/user.controller';
 import { UserCredentials } from '../user/entities/user.credentials.entity';
 
 @Module({

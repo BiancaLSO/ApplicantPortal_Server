@@ -17,7 +17,7 @@ import { ActivityService } from '../activity/activity.service';
 import { GrantService } from '../grant/grant.service';
 import { UserService } from '../user/user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { NotificationService } from 'src/notification/notification.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Controller('application')
 export class ApplicationController {

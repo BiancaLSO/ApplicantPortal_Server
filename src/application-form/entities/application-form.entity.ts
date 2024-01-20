@@ -6,7 +6,6 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
 import { Application } from '../../application/entities/application.entity';
 
 @Entity({ name: 'application_form' })

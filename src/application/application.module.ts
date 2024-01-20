@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { Application } from './entities/application.entity';
 import { ApplicationService } from './application.service';
 import { ApplicationController } from './application.controller';
@@ -13,13 +12,8 @@ import { Grant } from '../grant/entities/grant.entity';
 import { UserCredentials } from '../user/entities/user.credentials.entity';
 import { Address } from '../address/entities/address.entity';
 import { Status } from '../status/entities/status.entity';
-import { StatusService } from 'src/status/status.service';
-import { NotificationService } from 'src/notification/notification.service';
-import { Notification } from 'src/notification/entites/notification.entity';
-
-// import { ActivityModule } from '../activity/activity.module';
-// import { GrantModule } from '../grant/grant.module';
-// import { UserModule } from '../user/user.module';
+import { NotificationService } from '../notification/notification.service';
+import { Notification } from '../notification/entites/notification.entity';
 
 @Module({
   imports: [

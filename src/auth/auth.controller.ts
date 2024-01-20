@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  ParseArrayPipe,
   Post,
   Request as Request2,
   UseGuards,
@@ -9,10 +8,10 @@ import {
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { CreateUserCredentialsDTO } from './../user/dto/create-user-credentials.dto';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { AddressDto } from 'src/address/dto/address.dto';
-import { NotificationService } from 'src/notification/notification.service';
-import { UserService } from 'src/user/user.service';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { AddressDto } from '../address/dto/address.dto';
+import { NotificationService } from '../notification/notification.service';
+import { UserService } from '../user/user.service';
 
 @Controller('auth')
 export class AuthController {

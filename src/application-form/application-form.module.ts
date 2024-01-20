@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { ApplicationForm } from './entities/application-form.entity';
 import { ApplicationFormService } from './application-form.service';
 import { ApplicationFormController } from './application-form.controller';
@@ -16,9 +15,8 @@ import { Grant } from '../grant/entities/grant.entity';
 import { Address } from '../address/entities/address.entity';
 import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { Status } from '../status/entities/status.entity';
-import { StatusService } from 'src/status/status.service';
-import { NotificationService } from 'src/notification/notification.service';
-import { Notification } from 'src/notification/entites/notification.entity';
+import { NotificationService } from '../notification/notification.service';
+import { Notification } from '../notification/entites/notification.entity';
 
 @Module({
   imports: [

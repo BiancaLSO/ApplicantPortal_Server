@@ -8,7 +8,7 @@ import { encodePassword } from './../auth/utils.bcrypt';
 import { CreateUserCredentialsDTO } from './dto/create-user-credentials.dto';
 import { Address } from '../address/entities/address.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { AddressDto } from 'src/address/dto/address.dto';
+import { AddressDto } from '../address/dto/address.dto';
 
 @Injectable()
 export class UserService {

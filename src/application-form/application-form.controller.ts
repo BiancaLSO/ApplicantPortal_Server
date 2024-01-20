@@ -13,12 +13,12 @@ import { ApplicationFormDto } from './dto/application-form.dto';
 import { ApplicationForm } from './entities/application-form.entity';
 import { ApplicationFormService } from './application-form.service';
 import { ApplicationService } from '../application/application.service';
-import { ActivityService } from 'src/activity/activity.service';
-import { UserService } from 'src/user/user.service';
-import { ApplicationDto } from 'src/application/dto/application.dto';
-import { GrantService } from 'src/grant/grant.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { NotificationService } from 'src/notification/notification.service';
+import { ActivityService } from '../activity/activity.service';
+import { UserService } from '../user/user.service';
+import { ApplicationDto } from '../application/dto/application.dto';
+import { GrantService } from '../grant/grant.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { NotificationService } from '../notification/notification.service';
 
 @Controller('application-form')
 export class ApplicationFormController {
