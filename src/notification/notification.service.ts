@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { NotificationDto } from './dto/notification.dto';
 import { Notification } from './entites/notification.entity';
 import { UserService } from 'src/user/user.service';
 
@@ -14,7 +13,6 @@ export class NotificationService {
   ) {}
 
   async create_notification(body: any) {
-    console.log('hello');
     const user = await this.userService.findOne(body.userId);
     const newBody = {
       user: user,
