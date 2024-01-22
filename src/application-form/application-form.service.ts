@@ -31,7 +31,7 @@ export class ApplicationFormService {
 
   async findByApplicationId(id: number): Promise<ApplicationForm> {
     return await this.applicationFormRepository.findOne({
-      where: { application: { id } }, // Use correct syntax here
+      where: { application: { id } },
       relations: ['application'],
     });
   }

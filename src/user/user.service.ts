@@ -143,7 +143,6 @@ export class UserService {
   }
 
   async removeUserAndRelatedEntities(id: number) {
-    // delete user credentials as well
     return this.userRepository.delete(id);
   }
 }

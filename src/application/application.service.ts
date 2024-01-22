@@ -29,7 +29,7 @@ export class ApplicationService {
 
   async findByUserId(id: number): Promise<Application[]> {
     return await this.applicationRepository.find({
-      where: { user: { id } }, // Use correct syntax here
+      where: { user: { id } },
       relations: ['activities', 'grant', 'user'],
     });
   }
