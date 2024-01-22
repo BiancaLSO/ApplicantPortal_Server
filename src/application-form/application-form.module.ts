@@ -13,7 +13,6 @@ import { UserService } from '../user/user.service';
 import { GrantService } from '../grant/grant.service';
 import { Grant } from '../grant/entities/grant.entity';
 import { Address } from '../address/entities/address.entity';
-import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { Status } from '../status/entities/status.entity';
 import { NotificationService } from '../notification/notification.service';
 import { Notification } from '../notification/entites/notification.entity';
@@ -29,7 +28,6 @@ import { Notification } from '../notification/entites/notification.entity';
       Grant,
       Address,
       Status,
-      PDF,
       Notification,
     ]),
   ],

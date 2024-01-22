@@ -7,7 +7,6 @@ import { User } from '../user/entities/user.entity';
 import { Address } from '../address/entities/address.entity';
 import { Application } from '../application/entities/application.entity';
 import { ContactForm } from '../contact-form/entities/contact-form.entity';
-import { PDF } from '../pdf_upload/entities/pdf_upload.entity';
 import { UserService } from '../user/user.service';
 import { UserCredentials } from '../user/entities/user.credentials.entity';
 
@@ -19,7 +18,6 @@ import { UserCredentials } from '../user/entities/user.credentials.entity';
       Address,
       Application,
       ContactForm,
-      PDF,
       UserCredentials,
     ]),
   ],

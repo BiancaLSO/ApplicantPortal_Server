@@ -11,7 +11,6 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { StatusModule } from './status/status.module';
 import { ActivityModule } from './activity/activity.module';
-import { PdfUploadModule } from './pdf_upload/pdf_upload.module';
 import { CategoryModule } from './category/category.module';
 import { GrantModule } from './grant/grant.module';
 import { NotificationModule } from './notification/notification.module';
@@ -41,7 +40,6 @@ import { NotificationModule } from './notification/notification.module';
     AuthModule,
     StatusModule,
     ActivityModule,
-    PdfUploadModule,
     CategoryModule,
     GrantModule,
     NotificationModule,

@@ -25,7 +25,7 @@ export class Application {
   @JoinColumn({ name: 'grant_id' })
   grant: Grant;
 
-  @ManyToOne(() => User, (user) => user.applications)
+  @ManyToOne(() => User, (user) => user.applications, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 }

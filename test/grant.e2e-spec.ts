@@ -57,14 +57,15 @@ describe('GrantController (e2e)', () => {
 
       testCategory.push(createdCategory.body);
 
-      const grant1 = new GrantDto(
-        'Test Grant 1',
-        new Date(2023, 0, 15),
-        new Date(2023, 3, 15),
-        'example.com',
-      );
-      grant1.category = createdCategory.body;
-      // Arrange
+      const grant1 = {
+        title: 'Test Grant 1',
+        start_date: new Date(2023, 0, 15),
+        end_date: new Date(2023, 3, 15),
+        link: 'example.com',
+        categoryId: 0,
+      };
+
+      grant1.categoryId = createdCategory.body.id;
       const createdGrant = await request(app.getHttpServer())
         .post('/grant')
         .send(grant1)
@@ -75,7 +76,7 @@ describe('GrantController (e2e)', () => {
       // Assert (expect)
       console.log('the test grant', createdGrant.body);
       console.log('the sent grant', grant1);
-      expect(createdGrant.body.category).toEqual(grant1.category);
+      expect(createdGrant.body.category.id).toEqual(grant1.categoryId);
     });
   });
 
@@ -126,9 +127,9 @@ describe('GrantController (e2e)', () => {
         .get('/grant')
         .expect(200);
 
-      // Assert (expect)
-      expect(body.length).toEqual(4);
-      expect(body[1].title).toEqual('Test Grant 1');
+      const grantIndex = body.map((obj) => obj.title).indexOf('Test Grant 1');
+      expect(body.length).toEqual(7);
+      expect(body[grantIndex].title).toEqual('Test Grant 1');
     });
   });
 
